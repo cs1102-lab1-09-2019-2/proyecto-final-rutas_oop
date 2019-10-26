@@ -10,8 +10,8 @@ Integrantes - (Usuarios Github:):
 1.- <b>Daniela Abril Vento Bustamante</b><br>
     <i>davento</i>
 
-2.- <b>nombre_completo2</b><br>
-    <i>usuario_github2</i>
+2.- <b>William Jarod Rojas Criollo</b><br>
+    <i>jarod429</i>
 
 3.- <b>nombre_completo3</b><br>
     <i>usuario_github3</i>
