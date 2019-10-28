@@ -13,8 +13,8 @@ Integrantes - (Usuarios Github:):
 2.- <b>William Jarod Rojas Criollo</b><br>
     <i>jarod429</i>
 
-3.- <b>nombre_completo3</b><br>
-    <i>usuario_github3</i>
+3.- <b>Omar Eduardo Damián Gonzales</b><br>
+    <i>oikawa18</i>
 
 Instrucciones:
 --
