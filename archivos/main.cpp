@@ -19,7 +19,7 @@ void displayMaps() {
   texto mapaListado;
   ifstream mapaMostrado;
   texto lineTemp;
-	for (int i=0; i<11; i++) {
+	for (int i=1; i<11; i++) {
 		mapaListado = to_string(i)+".txt";
 		cout<<mapaListado<<"\n";
     mapaMostrado.open(mapaListado.c_str());
