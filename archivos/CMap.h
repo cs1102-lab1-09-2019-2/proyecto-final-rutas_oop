@@ -1,8 +1,5 @@
-#ifndef 
-#define 
-
-#include "proyectAssets.h"
 #include "CPunto.h"
+#include "CNode.h"
 
 const entero defAncho = 20;
 const entero defAlto = 20;
@@ -11,31 +8,30 @@ const entero defPunto = 0;
 class CMap {
 
 private:
-entero ancho;
-entero alto;
-simbolo** M;
-entero cantPuntos;
-CPunto** puntos = NULL;
-
+  entero ancho;
+  entero alto;
+  simbolo** M;
+  entero cantPuntos;
+  CPunto** puntos = NULL;
 public:
-CMap();
-CMap (entero _ancho, entero _alto);
-void generarMapa(entero ancho, entero alto);
-void addPunto(CPunto* punto);
-CPunto* removerPunto(texto _punto);
-CPunto* buscarPunto(texto _punto);
-CPunto* modificarPunto(*CPunto _punto);
-void updateMap();
-void imprimirMap();
-void imprimirPuntos();
-entero getAncho();
-entero getAlto();
-entero getCantPuntos();
-void calcularRuta(CPunto* a, CPunto* b); //falta implementar
-~CMap ();
-
+  CMap();
+  CMap (entero _ancho, entero _alto);
+  void generarMapa();
+  void addPunto(CPunto* punto, entero i);
+  CPunto* removerPunto(texto _punto);
+  CPunto* buscarPunto(texto _punto);
+  void updateList();
+  void modificarPunto(CPunto* _punto);
+  void updateMap();
+  booleano verificarNombre(string nombre);
+  void imprimirMap();
+  void imprimirPuntos();
+  void setCantPuntos(entero n) {cantPuntos = n;}
+  entero getAncho();
+  entero getAlto();
+  entero getCantPuntos();
+  simbolo** getMap();
+  booleano isValid(booleano visited[20][20], entero row, entero col);
+  void BFS(entero startX, entero startY, entero finishX, entero finishY);
+  ~CMap ();
 };
-
-#include "CMap.cpp"
-
-#endif
