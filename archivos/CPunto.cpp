@@ -2,10 +2,10 @@
 
 CPunto::CPunto(texto _name, simbolo _mark, entero _x, entero _y) {
     name = _name; 
-    if (mark!='0' || mark !='1')
+    if (mark!='0' || mark !='1' || mark!='.')
         mark = _mark;
     else
-        mark = defMark;
+        mark = 'x';
     x = _x;
     y = _y;
 }
@@ -26,11 +26,11 @@ entero CPunto::getY() {
 }
 
 texto CPunto::getName() {
-    return nombre;
+    return name;
 }
 
 simbolo CPunto::getMark() {
-    return marcador;
+    return mark;
 }
 
 CPunto:: ~CPunto () {
