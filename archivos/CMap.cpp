@@ -37,6 +37,9 @@ CMap::CMap() {
     ancho=defAncho;
     alto=defAlto;
     cantPuntos=defPunto;
+    M=new simbolo*[alto];
+    for (int i=0;i<alto;i++)
+      M[i]=new simbolo[ancho];
 }
 
 CMap::CMap (entero _ancho, entero _alto) {
@@ -84,7 +87,7 @@ bool CMap::verificarNombre(texto nombre) {
 void CMap::imprimirMap() {
     for (int i=0; i<alto; i++){
       for (int j=0; j<ancho; j++) {
-        cout<<M[i][j]<<setw(2)<<" ";
+        cout<<M[i][j]<<" ";
       }
       cout<<"\n";
     }
@@ -93,7 +96,7 @@ void CMap::imprimirMap() {
 void CMap::imprimirPuntos() {
     for (int i = 0; i < cantPuntos; i++) {
         cout<<"\n"<<puntos[i]->getName()<<" | "<<puntos[i]->getMark()
-        <<" está en ("<<puntos[i]->getX()<<", "<<puntos[i]->getY()<<")";
+        <<" está en ("<<puntos[i]->getY()<<", "<<puntos[i]->getX()<<")";
     }
 }
 
@@ -134,9 +137,7 @@ void CMap::BFS(entero i, entero j, entero x, entero y)
  char temp=M[x][y];
  booleano visited[20][20];
 
-
-
-memset(visited, false, sizeof (visited));
+ memset(visited, false, sizeof (visited));
 
  queue<CNode> q;
 
@@ -144,12 +145,14 @@ memset(visited, false, sizeof (visited));
  q.push({i, j, 0});
 
  entero min_dist = INT_MAX;
+ vector<entero>secuencia;
 
  while (!q.empty()) 
  {
   CNode node = q.front();
   q.pop();
   entero i = node.x, j = node.y, dist = node.dist;
+
   if (i == x && j == y) 
   {
    min_dist = dist;
@@ -160,12 +163,14 @@ memset(visited, false, sizeof (visited));
   {
    if (isValid(visited, i + row[k], j + col[k]) && M[i+row[k]][j+col[k]] != '1')
    {int n,m;
+   
     visited[i + row[k]][j + col[k]] = true;
 
-    M[i+row[k]][j+col[k]] = '-';
     q.push({ i + row[k], j + col[k], dist + 1 });
-    n=i+row[k];
-    m=j+col[k];
+    
+    secuencia.emplace_back(i+row[k]);
+    secuencia.emplace_back(j+col[k]);
+    M[i+row[k]][j+col[k]] = '-';
    }
   }
    M[x][y]=temp;
@@ -174,7 +179,11 @@ memset(visited, false, sizeof (visited));
  if (min_dist != INT_MAX)
   { imprimirMap();
     cout << "La distancia más corta tiene longitud "
-     << min_dist<<"\n";}
- else
-  cout << "No es posible calcular la ruta"<<"\n";
+     << min_dist-1<<"\n";
+    cout<<"Para encontrar la ruta, el BFS pasó por: \n";
+    for (int a=0; a<secuencia.size()/2; a++) {
+      cout<<"("<<secuencia[a]<<", "<<secuencia[a+1]<<")\n";
+      }
+
+     }
 }
