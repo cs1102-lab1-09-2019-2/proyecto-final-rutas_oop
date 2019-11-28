@@ -8,6 +8,8 @@
 #include <vector>
 #include <queue>
 #include <climits>
+#include <fstream>
+#include <cstring>
 
 using namespace std;
 
