@@ -1,33 +1,18 @@
 #include "CMap.h"
 
-
-void rEspacio(simbolo* s)
-{
-    simbolo* cpy = s;
-    simbolo* temp = s;
-    while (*cpy)
-    {
-        if (*cpy != ' ')
-            *temp++ = *cpy;
-        cpy++;
-    }
-    *temp = 0;
-    cout << s << endl;
-}
-
 void displayMaps() {
   texto mapaListado;
   ifstream mapaMostrado;
   texto lineTemp;
 	for (int i=1; i<11; i++) {
 		mapaListado = to_string(i)+".txt";
-		cout<<mapaListado<<"\n";
+		cout<<"\n"<<mapaListado<<"\n";
     mapaMostrado.open(mapaListado.c_str());
     while (getline (mapaMostrado, lineTemp)) {
-      for(int a=0; a<lineTemp.size(); a++)
-      cout<<lineTemp[i]<<setw(2)<<" ";
+      for(int i=0; i<lineTemp.size(); i++)
+      cout<<lineTemp[i]<<" ";
       cout<<"\n";
-    } cout<<"\n";
+    } 
     mapaMostrado.close();
 	  }
   }
@@ -37,39 +22,26 @@ void loadBoot() {
   texto nombreMapa;
   ifstream mapaElegido;
   texto line;
-  entero row=0;
-  cout<<"Ingrese el número del mapa que quiere usar: ";
+  entero row=-1;
+  const entero al=20;
+  CMap* laberinto = new CMap();
+  cout<<"\nIngrese el número del mapa que quiere usar: ";
 
   do {
     cin>>nombreMapa;
   } while(stoi(nombreMapa)<0 || stoi(nombreMapa)>10);
-/*
-  CMap* laberinto = new CMap();
+  
   nombreMapa = nombreMapa + ".txt";
   mapaElegido.open(nombreMapa.c_str());
-
-      simbolo cstr[line.size()+1];
-      strcpy(cstr, line.c_str());
-      entero j=0+(i*line.size());
-      while (j<line.size()){
-        if(cstr[j]=='1')
-        laberinto->getMap()[i][j]='1';
-        if(cstr[j]=='0')
-        laberinto->getMap()[i][j]='0';
-        j++;
-      }
-      i++;
-
- while(getline(mapaElegido,line)) {
-    if(cstr[col]=='1')
-    laberinto->getMap()[row][col]='1';
-    if(cstr[row]=='0')
-    laberinto->getMap()[row][col]='0';
+  cout<<"Usted ha elegido el mapa "<<nombreMapa<<":\n";
+  while(getline(mapaElegido,line)) {
     row++;
-    }
-  */
+    for(int i= 0; i<line.size(); i++)
+    laberinto->getMap()[row][i] = line[i];
+  }
+  
   mapaElegido.close();
- 
+
   laberinto->imprimirMap();
   
   entero numPuntos, cx, cy;
@@ -94,12 +66,12 @@ void loadBoot() {
       do {
         do {
             cout<<"\nIngrese coordenadas en x de 0 a 19: ";
-            cin>>cx;
-        } while (cx<0 || cx>laberinto->getAncho()-1);
-        do {
-            cout<<"\nIngrese coordenadas en y de 0 a 19: ";
             cin>>cy;
         } while (cy<0 || cy>laberinto->getAlto()-1);
+        do {
+            cout<<"\nIngrese coordenadas en y de 0 a 19: ";
+            cin>>cx;
+        } while (cx<0 || cx>laberinto->getAncho()-1);
       } while(laberinto->getMap()[cx][cy]=='1');
       laberinto->addPunto(new CPunto(nombre, marca, cx, cy), i);
   }
@@ -120,7 +92,6 @@ void loadBoot() {
   laberinto->buscarPunto(a)->getY(),
   laberinto->buscarPunto(b)->getX(),
   laberinto->buscarPunto(b)->getY());
-  
 }
 
 void randomBoot() {
@@ -152,12 +123,12 @@ void randomBoot() {
       do {
         do {
             cout<<"\nIngrese coordenadas en x de 0 a 19: ";
-            cin>>cx;
-        } while (cx<-1 || cx>laberinto->getAncho()-1);
-        do {
-            cout<<"\nIngrese coordenadas en y de 0 a 19: ";
             cin>>cy;
         } while (cy<-1 || cy>laberinto->getAlto()-1);
+        do {
+            cout<<"\nIngrese coordenadas en y de 0 a 19: ";
+            cin>>cx;
+        } while (cx<-1 || cx>laberinto->getAncho()-1);
       } while(laberinto->getMap()[cx][cy]=='1');
       laberinto->addPunto(new CPunto(nombre, marca, cx, cy), i);
   }
