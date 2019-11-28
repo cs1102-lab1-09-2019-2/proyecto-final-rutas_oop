@@ -24,7 +24,9 @@ void displayMaps() {
 		cout<<mapaListado<<"\n";
     mapaMostrado.open(mapaListado.c_str());
     while (getline (mapaMostrado, lineTemp)) {
-      cout<<lineTemp<<"\n";
+      for(int a=0; a<lineTemp.size(); a++)
+      cout<<lineTemp[i]<<setw(2)<<" ";
+      cout<<"\n";
     } cout<<"\n";
     mapaMostrado.close();
 	  }
@@ -41,11 +43,11 @@ void loadBoot() {
   do {
     cin>>nombreMapa;
   } while(stoi(nombreMapa)<0 || stoi(nombreMapa)>10);
-
+/*
   CMap* laberinto = new CMap();
   nombreMapa = nombreMapa + ".txt";
   mapaElegido.open(nombreMapa.c_str());
-/*
+
       simbolo cstr[line.size()+1];
       strcpy(cstr, line.c_str());
       entero j=0+(i*line.size());
@@ -57,15 +59,15 @@ void loadBoot() {
         j++;
       }
       i++;
-*/
-  while(getline(mapaElegido,line)) {
+
+ while(getline(mapaElegido,line)) {
     if(cstr[col]=='1')
     laberinto->getMap()[row][col]='1';
     if(cstr[row]=='0')
     laberinto->getMap()[row][col]='0';
     row++;
     }
-  
+  */
   mapaElegido.close();
  
   laberinto->imprimirMap();
@@ -118,6 +120,7 @@ void loadBoot() {
   laberinto->buscarPunto(a)->getY(),
   laberinto->buscarPunto(b)->getX(),
   laberinto->buscarPunto(b)->getY());
+  
 }
 
 void randomBoot() {
