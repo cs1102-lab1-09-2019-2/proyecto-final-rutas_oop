@@ -1,9 +1,4 @@
-#ifndef 
-#define 
-
 #include "proyectAssets.h"
-
-simbolo defMark = 'x';
 
 class CPunto {
 
@@ -18,16 +13,20 @@ public:
     CPunto (const CPunto &otroPunto);
     entero getX();
     entero getY();
+    entero getG();
+    entero getF();
+    entero getH();
+    entero getTempG();
     texto getName();
     simbolo getMark();
     ~CPunto ();
+    void setG(entero _g);
+    void setF(entero _f);
+    void setH(entero _h);
+    void setTempG(entero _tg);
     void setX(entero _x);
     void setY(entero _y);
     void setName(texto _name);
     void setMark(simbolo _mark);
     void imprimirXY();
 };
-
-#include "CPunto.cpp"
-
-#endif
