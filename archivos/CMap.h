@@ -18,10 +18,8 @@ public:
   CMap (entero _ancho, entero _alto);
   void generarMapa();
   void addPunto(CPunto* punto, entero i);
-  CPunto* removerPunto(texto _punto);
   CPunto* buscarPunto(texto _punto);
   void updateList();
-  void modificarPunto(CPunto* _punto);
   void updateMap();
   booleano verificarNombre(string nombre);
   void imprimirMap();
